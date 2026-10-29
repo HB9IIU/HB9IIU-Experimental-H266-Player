@@ -7,7 +7,7 @@ also show **H.266 (VVC)**.
 **Tuners:**
 
 - **MiniTiouner:** tested.
-- **PicoTuner (USB):** the code supports it, but it is **not tested yet**. Testers are welcome: please tell me if it works.
+- **PicoTuner (USB):** tested, works (received an H.266 test transmission).
 - **PicoTuner over Ethernet:** not supported.
 
 ## Use (Windows 10 / 11)
@@ -18,7 +18,8 @@ also show **H.266 (VVC)**.
 3. Click a signal in the spectrum. The first picture can take 10-15 seconds (the bar says
    *Waiting for keyframe*): that is normal.
 
-Optional: copy `player2.example.json` to `player2.json` to set the LNB offset, LNB power and so on.
+If the tuner powers your LNB: copy `player2.example.json` to `player2.json` and set `"lnb_power"` to `"vertical"` or `"horizontal"`
+(the default is `"off"`). The same file sets the LNB offset and so on.
 The spectrum comes from BATC and needs internet.
 
 ## Licence
