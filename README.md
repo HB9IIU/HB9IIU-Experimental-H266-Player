@@ -2,7 +2,7 @@
 
 An experimental receiver window for QO-100 DATV. It shows the live spectrum of the transponder at the
 bottom: click a signal to tune it and watch it. It decodes with ffplay, so besides H.265 and H.264 it can
-also show **H.266 (VVC)**. The title bar says what is playing, for example `Currently playing H.265 1280x720`.
+also show **H.266 (VVC)**.
 
 **Tested with:** a MiniTiouner.
 **PicoTuner:** the code supports it, but it is **not tested yet**. Testers are welcome: please tell me if it works.
