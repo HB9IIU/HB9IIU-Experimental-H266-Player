@@ -124,6 +124,16 @@ namespace QocastPlayer
                 };
                 window.Shown += (s, e) => feed.Start();
 
+                // LNB power chosen in the menu: tune the same signal again, the receiver reads it at every tune
+                window.LnbPowerChanged += () =>
+                {
+                    double? mhz = window.Spectrum.TunedMhz;
+                    if (!mhz.HasValue)
+                        return;
+                    receiver.Tune((long)Math.Round(mhz.Value * 1000), window.Spectrum.TunedSr);
+                    window.Spectrum.ShowMessage("LNB power: " + config.lnb_power);
+                };
+
                 var video = new VideoPlayer(window.Video, receiver.Stream, config.muted ? 0 : config.volume);
                 window.PictureWaiting = () => video.Waiting;
                 window.DecoderCpu = () => video.DecoderCpu();
@@ -188,6 +198,7 @@ namespace QocastPlayer
             {
                 var stream = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
                 window.StationName = () => pico.BarText();
+                window.DisableLnbMenu();
                 var video = new VideoPlayer(window.Video, stream, config.muted ? 0 : config.volume);
                 window.PictureWaiting = () => video.Waiting;
                 window.DecoderCpu = () => video.DecoderCpu();

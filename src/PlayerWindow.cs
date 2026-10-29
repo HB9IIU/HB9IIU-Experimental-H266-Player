@@ -33,6 +33,7 @@ namespace QocastPlayer
         private readonly ToolStripMenuItem _onTopItem;
         private readonly ToolStripMenuItem _titleBarItem;
         private readonly ToolStripMenuItem _spectrumItem;
+        private readonly ToolStripMenuItem _lnbItem;     // LNB power: off / vertical / horizontal
         private const int BarHeight = 26;
         private const int LoadHeight = 22;
         private readonly Panel _bar;
@@ -70,6 +71,9 @@ namespace QocastPlayer
         }
 
         public Panel Video { get; }
+
+        // the LNB power was chosen in the menu (the receiver tunes again with it)
+        public event Action LnbPowerChanged;
 
         // muted / volume changed by the user: (muted, volume)
         public event Action<bool, int> SoundChanged;
@@ -202,7 +206,24 @@ namespace QocastPlayer
             _spectrumItem = new ToolStripMenuItem("Spectrum") { Checked = true, CheckOnClick = true };   // always opens with the spectrum
             _spectrumItem.CheckedChanged += (s, e) => SetSpectrum(_spectrumItem.Checked);
             // double click on the picture: spectrum on / off
-            menu.Items.AddRange(new ToolStripItem[] { _spectrumItem, _onTopItem, _titleBarItem,
+            _lnbItem = new ToolStripMenuItem("LNB power");
+            foreach (string choice in new[] { "off", "vertical", "horizontal" })
+            {
+                string value = choice;
+                var item = new ToolStripMenuItem(char.ToUpper(value[0]) + value.Substring(1))
+                {
+                    Checked = config.lnb_power == value, Tag = value
+                };
+                item.Click += (s, e) =>
+                {
+                    _config.lnb_power = value;
+                    foreach (ToolStripMenuItem other in _lnbItem.DropDownItems)
+                        other.Checked = (string)other.Tag == value;
+                    LnbPowerChanged?.Invoke();
+                };
+                _lnbItem.DropDownItems.Add(item);
+            }
+            menu.Items.AddRange(new ToolStripItem[] { _spectrumItem, _onTopItem, _titleBarItem, _lnbItem,
                                                       new ToolStripSeparator(), new ToolStripMenuItem("Quit", null, (s, e) => Close()) });
             ContextMenuStrip = menu;
             _status.ContextMenuStrip = menu;
@@ -364,6 +385,13 @@ namespace QocastPlayer
                                                 System.Globalization.CultureInfo.InvariantCulture, out double margin))
                 return margin >= 3 ? Look.Green : margin >= 1 ? Look.Amber : Look.Red;
             return Look.Text;
+        }
+
+        // the LNB power belongs to another program (the QOCAST Player owns the PicoTuner): nothing to choose here
+        public void DisableLnbMenu()
+        {
+            _lnbItem.Enabled = false;
+            _lnbItem.ToolTipText = "Set in the QOCAST Player";
         }
 
         // a click on the picture that ffplay's window caught (VideoPlayer.PictureMouse)

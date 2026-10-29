@@ -156,6 +156,8 @@ namespace QocastPlayer
         }
 
         public ushort[] Frame { get { return _frame; } }
+        public double? TunedMhz { get { return _tunedMhz; } }
+        public int TunedSr { get { return _tunedSr; } }
 
         public void SetFrame(ushort[] frame) { _frame = frame; Invalidate(); }
         public void SetConnected(bool connected) { _connected = connected; Invalidate(); }
