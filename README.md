@@ -18,9 +18,15 @@ also show **H.266 (VVC)**.
 3. Click a signal in the spectrum. The first picture can take 10-15 seconds (the bar says
    *Waiting for keyframe*): that is normal.
 
-If the tuner powers your LNB: right-click the window, *LNB power*, and choose *Vertical* or *Horizontal*
-(the default is *Off*). The choice is remembered. `player2.example.json` shows the other settings, such as the LNB offset.
 The spectrum comes from BATC and needs internet.
+
+## Right-click menu
+
+- **Spectrum:** show or hide the spectrum (a double-click on the picture does the same).
+- **Always on top** and **Title bar:** how the window behaves.
+- **LNB power:** *Off*, *Vertical* or *Horizontal*. Choose one if your tuner powers the LNB; the default is *Off*.
+  The signal is tuned again at once, and the choice is remembered.
+- **Quit**
 
 ## Licence
 
