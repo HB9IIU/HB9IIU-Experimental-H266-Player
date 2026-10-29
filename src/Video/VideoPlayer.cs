@@ -270,7 +270,7 @@ namespace QocastPlayer.Video
             var psi = new ProcessStartInfo(exe,
                 "-hide_banner -loglevel info -fflags nobuffer -flags low_delay " +
                 "-x " + _viewWidth + " -y " + _viewHeight + " -volume 100 " +
-                "-window_title \"QOCAST Player H.266 TEST\" -i pipe:0")
+                "-window_title \"HB9IIU Experimental H.266 Player\" -i pipe:0")
             {
                 UseShellExecute = false,
                 RedirectStandardInput = true,
@@ -310,12 +310,14 @@ namespace QocastPlayer.Video
             new Thread(() => EmbedWhenReady(p)) { IsBackground = true, Name = "VideoEmbed" }.Start();
         }
 
-        // waits for ffplay's window, then moves it into the view
+        // waits for ffplay's window, then moves it into the view. ffplay shows its window only when the first
+        // picture is decoded, which can take 20 s or more (waiting for a keyframe): so it waits as long as this
+        // ffplay is the current one and runs
         private void EmbedWhenReady(Process p)
         {
             try
             {
-                for (int i = 0; i < 200 && !p.HasExited; i++)
+                while (p == _ffplay && !p.HasExited)
                 {
                     p.Refresh();
                     if (p.MainWindowHandle != IntPtr.Zero)
