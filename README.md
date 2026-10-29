@@ -10,7 +10,7 @@ also show **H.266 (VVC)**.
 ## Use (Windows 10 / 11)
 
 1. Download the zip from *Releases* and unzip it anywhere.
-2. Plug in the tuner and start `qocast-player_2_h266test.exe`. (Same drivers as Open Tuner; close other
+2. Plug in the tuner and start `HB9IIU-Experimental-H266-Player.exe`. (Same drivers as Open Tuner; close other
    programs that use the tuner first.)
 3. Click a signal in the spectrum. The first picture can take 10-15 seconds (the bar says
    *Waiting for keyframe*): that is normal.
