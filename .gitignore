@@ -1,0 +1,5 @@
+bin/
+obj/
+*.log
+player2.json
+*.zip
