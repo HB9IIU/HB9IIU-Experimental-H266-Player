@@ -24,6 +24,6 @@ The spectrum comes from BATC and needs internet.
 ## Licence
 
 GPL v3 (it contains code from Open Tuner by ZR6TG and contributors). The source is in `src/`.
-`ffplay.exe` in the zip is a free FFmpeg build (LGPL v3), see `FFMPEG-LICENSE.txt`.
+`ffplay.exe` in the zip is a free FFmpeg build (LGPL), see `FFMPEG-LICENSE.txt`.
 
 73, HB9IIU

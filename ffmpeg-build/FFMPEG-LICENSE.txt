@@ -1,0 +1,14 @@
+FFmpeg / ffplay in this package
+----------------------------
+A build of FFmpeg (https://ffmpeg.org), licensed under the GNU Lesser General Public License,
+version 2.1 or later (the licence text that "ffplay -L" prints; full text:
+https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).
+Configured without any GPL or non-free parts (no fdk-aac, no x264, no x265).
+
+Version: ffplay N-128186-gc0f6ae570 (FFmpeg git commit c0f6ae570)
+Source code: https://code.ffmpeg.org/FFmpeg/FFmpeg
+Built with media-autobuild_suite (https://github.com/m-ab-s/media-autobuild_suite).
+Configure options: --disable-autodetect --disable-debug --disable-doc --enable-sdl2 --enable-d3d11va
+--enable-dxva2 --enable-schannel
+The build script is ffmpeg-build/build_ffplay_player_free.bat in the player's repository
+(https://github.com/HB9IIU/HB9IIU-Experimental-H266-Player).
