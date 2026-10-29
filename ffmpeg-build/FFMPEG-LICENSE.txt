@@ -6,7 +6,8 @@ https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).
 Configured without any GPL or non-free parts (no fdk-aac, no x264, no x265).
 
 Version: ffplay N-128186-gc0f6ae570 (FFmpeg git commit c0f6ae570)
-Source code: https://code.ffmpeg.org/FFmpeg/FFmpeg
+Source code: https://code.ffmpeg.org/FFmpeg/FFmpeg, and the exact source of this build is attached to the
+release of this program as ffmpeg-c0f6ae570-source.zip.
 Built with media-autobuild_suite (https://github.com/m-ab-s/media-autobuild_suite).
 Configure options: --disable-autodetect --disable-debug --disable-doc --enable-sdl2 --enable-d3d11va
 --enable-dxva2 --enable-schannel
